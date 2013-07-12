@@ -1,0 +1,18 @@
+body {
+	background: rgb(240, 240, 240);
+}
+
+.title {
+	padding: 0px 0px 20px 0px;
+	text-align: center;
+	font-weight:bold;
+}
+
+.center {
+	text-align: center;
+}
+
+.indent {
+	padding-left: 20px;
+	padding-right: 20px;
+}
