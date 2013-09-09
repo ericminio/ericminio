@@ -2,7 +2,7 @@ var request = require('request');
 var serving = require('../public/js/serving');
 var Server = require('../public/js/server');
 
-describe("Serving Power-Of_two level", function() {
+describe("Serving Power.Of.Two level", function() {
 
 	var server = new Server(serving('public'));
 
@@ -15,14 +15,14 @@ describe("Serving Power-Of_two level", function() {
 	});
 
 	it('answers with json to a request from yose', function(done) {
-		request("http://localhost:5000/power.of.two?number=8", function(error, response, body) {
+		request("http://localhost:5000/yose?number=8", function(error, response, body) {
 			expect(response.headers['content-type']).toEqual('application/json');
 			done();
 		});
 	});
 	
 	it('answers the expected response to a request from yose', function(done) {
-		request("http://localhost:5000/power.of.two?number=8", function(error, response, body) {
+		request("http://localhost:5000/yose?number=8", function(error, response, body) {
 			expect(body).toEqual(JSON.stringify( { 
 				number : 8,
 				decomposition : [2, 2, 2]
@@ -32,7 +32,7 @@ describe("Serving Power-Of_two level", function() {
 	});
 	
 	it('resists beginner hackers', function(done) {
-		request("http://localhost:5000/power.of.two?number=toto", function(error, response, body) {
+		request("http://localhost:5000/yose?number=toto", function(error, response, body) {
 			expect(response.statusCode).toEqual(400);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 'toto',
@@ -42,19 +42,8 @@ describe("Serving Power-Of_two level", function() {
 		});
 	});
 		
-	it('resists intermediate hackers', function(done) {
-		request("http://localhost:5000/power.of.two", function(error, response, body) {
-			expect(response.statusCode).toEqual(400);
-			expect(body).toEqual(JSON.stringify( { 
-				number : 'undefined',
-				error : 'Number not provided'
-			}));
-			done();
-		});
-	});
-
 	it('resists experts hackers', function(done) {
-		request("http://localhost:5000/power.of.two?number=12345678901234567890", function(error, response, body) {
+		request("http://localhost:5000/yose?number=12345678901234567890", function(error, response, body) {
 			expect(response.statusCode).toEqual(501);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 12345678901234567890,

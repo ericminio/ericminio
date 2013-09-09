@@ -2,6 +2,12 @@ var http 			= require('http');
 var url 			= require('url');
 var primeFactorsOf 	= require('./prime.factors');
 
+http.ServerResponse.prototype.answerWith = function(code, body) {
+	this.writeHead(code, {"Content-Type": "application/json"});
+	this.write(JSON.stringify(body));		
+	this.end();
+};
+
 http.ServerResponse.prototype.answerWithBadRequestNotANumber = function(number) {
 	this.answerWith(400, {
 		number : number,
@@ -28,12 +34,6 @@ http.ServerResponse.prototype.answerWithDecomposition = function(number) {
 		number : number,
 		decomposition : primeFactorsOf(number)
 	});		
-};
-
-http.ServerResponse.prototype.answerWith = function(code, body) {
-	this.writeHead(code, {"Content-Type": "application/json"});
-	this.write(JSON.stringify(body));		
-	this.end();
 };
 
 powerOfTwo = function(incoming, response) {
