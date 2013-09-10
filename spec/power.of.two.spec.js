@@ -36,7 +36,7 @@ describe("Serving Power.Of.Two level", function() {
 			expect(response.statusCode).toEqual(400);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 'toto',
-				error : 'Not a number'
+				error : 'not a number'
 			}));
 			done();
 		});

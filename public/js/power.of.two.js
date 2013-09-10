@@ -11,7 +11,7 @@ http.ServerResponse.prototype.answerWith = function(code, body) {
 http.ServerResponse.prototype.answerWithBadRequestNotANumber = function(number) {
 	this.answerWith(400, {
 		number : number,
-		error : 'Not a number'
+		error : 'not a number'
 	});
 };
 
