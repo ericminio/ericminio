@@ -1,7 +1,15 @@
 primeFactorsOf = function(number) {
-	if (number == 0) return [];
-	if (number == 1) return [];
-	if (number % 2 == 0) return [].concat(2, primeFactorsOf(number / 2));
-};
+	var factors = [];
+	var factor = 2;
+	while(number > 1) {
+		while(number % factor == 0) {
+			factors.push(factor);
+			number = number / factor;
+		}
+		factor ++;
+	}
+	return factors;
+}
 
 module.exports = primeFactorsOf;
+

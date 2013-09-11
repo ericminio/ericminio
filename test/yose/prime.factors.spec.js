@@ -10,4 +10,11 @@ describe('Prime Factors decomposition', function() {
 		expect(primeFactorsOf(4)).toEqual([2, 2]);
 	});
 	
+	it('can decompose power of three numbers', function() {
+		expect(primeFactorsOf(27)).toEqual([3, 3, 3]);
+	});
+	
+	it('can decompose 8946', function() {
+		expect(primeFactorsOf(8946)).toEqual([2,3,3,7,71]);
+	});
 });
