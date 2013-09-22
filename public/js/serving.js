@@ -11,14 +11,23 @@ serving = function(folder) {
 	
 	return function (request, response) {
 		var params = require('url').parse(request.url, true);
-
+		
+		var served = false;		
 		if (params.path == '/yose') {			
 			pong(response);
+			served = true;
 		}
-		if (params.path.startsWith('/yose?number=')) {
+		if (params.path.startsWith('/yose/primeFactors?number=')) {
 			powerOfTwo(request, response);
+			served = true;
 		}
-		else {
+		if (params.path == '/yose/primeFactors/ui') {
+			response.writeHead(200, { 'content-type': 'text/html' });
+			response.write(fs.readFileSync('./public/prime.factors.html'));
+			response.end();
+			served = true;
+		}
+		if (!served) {
 			serve_static(folder, request, response);		
 		}
 	};
