@@ -25,7 +25,7 @@ http.ServerResponse.prototype.answerWithBadRequestNumberNotProvided = function(n
 http.ServerResponse.prototype.answerWithTooBigNumber = function(number) {
 	this.answerWith(501, {
 		number : number,
-		error : 'Too big number (>1e6)'
+		error : 'too big number (>1e6)'
 	});
 };
 

@@ -47,7 +47,7 @@ describe("Serving PrimeFactors", function() {
 			expect(response.statusCode).toEqual(501);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 1000001,
-				error : 'Too big number (>1e6)'
+				error : 'too big number (>1e6)'
 			}));
 			done();
 		});

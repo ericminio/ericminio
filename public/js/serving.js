@@ -27,6 +27,18 @@ serving = function(folder) {
 			response.end();
 			served = true;
 		}
+		if (params.path.startsWith('/yose/primeFactors/ui/decompose?number=')) {
+			response.writeHead(200, { 'content-type': 'text/html' });
+			var number = params.query.number;
+			var primeFactorsOf = require('./prime.factors');
+			var result = number + " = " + primeFactorsOf(number).join(' x ');
+			var content = '<html><body>' +
+							'<label id="result">'+ result +'</label>' +
+						  '</body></html>';
+			response.write(content);
+			response.end();
+			served = true;
+		}
 		if (!served) {
 			serve_static(folder, request, response);		
 		}
