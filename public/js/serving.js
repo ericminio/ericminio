@@ -1,7 +1,7 @@
 var fs = require('fs');
 var pong = require('../../public/js/pong.js');
 var serve_static = require('../../public/js/serve-static.js');
-var powerOfTwo = require('../../public/js/power.of.two.js');
+var api = require('../../public/js/prime.factors.api.js');
 
 String.prototype.startsWith = function(prefix) {
 	return this.indexOf(prefix) != -1;
@@ -17,8 +17,10 @@ serving = function(folder) {
 			pong(response);
 			served = true;
 		}
-		if (params.path.startsWith('/yose/primeFactors?number=')) {
-			powerOfTwo(request, response);
+		if (params.path.startsWith('/yose/primeFactors?number=') 
+			|| params.path == '/yose/primeFactors?'
+			|| params.path == '/yose/primeFactors') {
+			api(request, response);
 			served = true;
 		}
 		if (params.path == '/yose/primeFactors/ui') {
@@ -27,11 +29,13 @@ serving = function(folder) {
 			response.end();
 			served = true;
 		}
-		if (params.path.startsWith('/yose/primeFactors/ui/decompose?number=')) {
+		if (params.path.startsWith('/yose/primeFactors/ui/decompose?number=')
+			|| params.path == '/yose/primeFactors/ui/decompose?'
+			|| params.path == '/yose/primeFactors/ui/decompose') {
 			response.writeHead(200, { 'content-type': 'text/html' });
 			var number = params.query.number;
-			var primeFactorsOf = require('./prime.factors');
-			var result = number + " = " + primeFactorsOf(number).join(' x ');
+			var status = api.primeFactorsOf(number);
+			var result = status.code == 200 ? number + " = " + status.body.decomposition.join(' x ') : status.body.error;
 			var content = '<html><body>' +
 							'<label id="result">'+ result +'</label>' +
 						  '</body></html>';
