@@ -119,7 +119,7 @@ describe("Prime factors UI", function() {
 					return browser.fill('input#number', '-10').pressButton('button#go');
 				}).
 				then(function() {
-					expect(browser.text('#result')).toEqual('not an integer > 1');
+					expect(browser.text('#result')).toEqual('-10 is not an integer > 1');
 					done();
 				}).
 				fail(function(error) {
