@@ -35,7 +35,11 @@ serving = function(folder) {
 			response.writeHead(200, { 'content-type': 'text/html' });
 			var number = params.query.number;
 			var status = api.primeFactorsOf(number);
-			var result = status.code == 200 ? number + " = " + status.body.decomposition.join(' x ') : status.body.error;
+			var result = status.code == 200 ? 
+						 number + " = " + status.body.decomposition.join(' x ') : 
+						 number != '' && status.body.error.indexOf('not a number') != -1 ? 
+							number + ' is ' + status.body.error : 
+							status.body.error;
 			var content = '<html><body>' +
 							'<label id="result">'+ result +'</label>' +
 						  '</body></html>';

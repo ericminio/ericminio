@@ -74,7 +74,7 @@ describe("Prime factors UI", function() {
 					return browser.fill('input#number', 'carl').pressButton('button#go');
 				}).
 				then(function() {
-					expect(browser.text('#result')).toEqual('not a number');
+					expect(browser.text('#result')).toEqual('carl is not a number');
 					done();
 				}).
 				fail(function(error) {
