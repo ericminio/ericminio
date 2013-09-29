@@ -98,21 +98,6 @@ describe("Prime factors UI", function() {
 				});
 		});
 
-		it('is strong enough to resist the not provided number attack', function(done) {
-			browser.visit('http://localhost:7000/yose/primeFactors/ui').
-				then(function() {
-					return browser.pressButton('button#go');
-				}).
-				then(function() {
-					expect(browser.text('#result')).toEqual('not a number');
-					done();
-				}).
-				fail(function(error) {
-					expect(error.toString()).toBeNull();
-					done();
-				});
-		});
-
 		it('is strong enough to resist the negative number attack', function(done) {
 			browser.visit('http://localhost:7000/yose/primeFactors/ui').
 				then(function() {

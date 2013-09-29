@@ -29,26 +29,6 @@ serving = function(folder) {
 			response.end();
 			served = true;
 		}
-		if (params.path.startsWith('/yose/primeFactors/ui/decompose?number=')
-			|| params.path == '/yose/primeFactors/ui/decompose?'
-			|| params.path == '/yose/primeFactors/ui/decompose') {
-			response.writeHead(200, { 'content-type': 'text/html' });
-			var number = params.query.number;
-			var status = api.primeFactorsOf(number);
-			var result = status.code == 200 ? 
-						 number + " = " + status.body.decomposition.join(' x ') : 
-						 number != '' && status.body.error.indexOf('not a number') != -1 ? 
-							number + ' is ' + status.body.error : 
-							number != '' && status.body.error.indexOf('not an integer > 1') != -1 ?
-								number + ' is ' + status.body.error:
-								status.body.error;
-			var content = '<html><body>' +
-							'<label id="result">'+ result +'</label>' +
-						  '</body></html>';
-			response.write(content);
-			response.end();
-			served = true;
-		}
 		if (!served) {
 			serve_static(folder, request, response);		
 		}

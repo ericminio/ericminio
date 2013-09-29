@@ -1,20 +1,39 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
 
-	<script src="js/lib/jquery-1.9.0.min.js"></script>	
+	<script src="/lib/jquery/jquery-1.9.0.min.js"></script>	
 </head>
 <body>
 	<h1 id="title">
 		Prime factors decomposition
 	</h1>
 	
-	<form action="/yose/primeFactors/ui/decompose">
-		<label id="invitation">Enter a number</label>
-		<input name="number" id="number">
-		<button type="submit" id="go">go</button>
-	</form>
+	<label id="invitation">Enter a number</label>
+	<input name="number" id="number">
+	<button type="submit" id="go" onclick="javascript:decompose()">go</button>
 	
+	<label id="result"></label>
+	
+	<script type="text/javascript">
+		function decompose() {
+			$.get('/yose/primeFactors?number=' + $('input#number').val()).always(displayResult);
+		}
+		function displayResult(data) {
+			if (data.responseText != undefined) {
+				var value = $.parseJSON(data.responseText);
+				if (value.error.indexOf('too big number') != -1) {
+					$('#result').text(value.error);
+				}
+				else {
+					$('#result').text(value.number + ' is ' + value.error);
+				}
+			}
+			else {
+				$('#result').text(data.number + ' = ' + data.decomposition.join(' x '));
+			}
+		}
+	</script>
 </body>
 </html>
