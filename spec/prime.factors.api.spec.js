@@ -97,5 +97,24 @@ describe("Serving PrimeFactors", function() {
 			done();
 		});
 	});
+	
+	it('can decompose several numbers', function(done) {
+		request("http://localhost:7000/yose/primeFactors?number=8&number=21", function(error, response, body) {
+			expect(response.statusCode).toEqual(200);
+			expect(body).toEqual(JSON.stringify( 
+				[
+					{ 
+						number : 8,
+						decomposition : [2, 2, 2]
+					},
+					{ 
+						number : 21,
+						decomposition : [3, 7]
+					},
+				]
+ 			));
+			done();
+		});		
+	});
 });
 

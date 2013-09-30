@@ -48,7 +48,16 @@ var buildAnswer = function(input) {
 
 api = function(incoming, response) {
 	var params = url.parse(incoming.url, true);	
-	var answer = buildAnswer(params.query.number);
+	var input = params.query.number;
+	if (typeof input == 'object') {
+		var answer = { code: 200, body: [] };
+		for(var i=0; i<input.length; i++) {
+			answer.body.push(buildAnswer(input[i]).body);
+		}
+	} 
+	else {
+		var answer = buildAnswer(input);
+	}
 
 	response.writeHead(answer.code, {"Content-Type": "application/json"});
 	response.write(JSON.stringify(answer.body));		
