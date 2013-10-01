@@ -16,22 +16,56 @@
 	
 	<label id="result"></label>
 	
+	<ol id="results">
+	</ol>
+	
 	<script type="text/javascript">
 		function decompose() {
-			$.get('/yose/primeFactors?number=' + $('input#number').val()).always(displayResult);
-		}
-		function displayResult(data) {
-			if (data.responseText != undefined) {
-				var value = $.parseJSON(data.responseText);
-				if (value.error.indexOf('too big number') != -1) {
-					$('#result').text(value.error);
-				}
-				else {
-					$('#result').text(value.number + ' is ' + value.error);
-				}
+			var input = $('input#number').val();
+			if (input.indexOf(',') != -1) {
+				var numbers = input.split(',');
+				var queryString = 'number=' + numbers.join('&number=');
 			}
 			else {
-				$('#result').text(data.number + ' = ' + data.decomposition.join(' x '));
+				var queryString = 'number=' + input;
+			}
+			
+			$.get('/yose/primeFactors?' + queryString).success(displayResult);
+		}
+		
+		function buildErrorMessage(data) {
+			if (data.error.indexOf('too big number') != -1) {
+				return data.error;
+			}
+			else {
+				return data.number + ' is ' + data.error;
+			}
+		}
+		
+		function buildNormalResult(data) {
+			return data.number + ' = ' + data.decomposition.join(' x ');
+		}
+		
+		function displayResult(data) {
+			$('#result').text('');
+			$('#results li').remove();
+
+			if (data.error != undefined) {
+				$('#result').text(buildErrorMessage(data));
+			}
+			else {
+				if (data.length == undefined) {
+					$('#result').text(buildNormalResult(data));
+				}
+				else {
+					for(var i=0; i<data.length; i++) {
+						var result = data[i];
+						var output = result.error != undefined ?
+							output = buildErrorMessage(result) :
+							buildNormalResult(result);
+						$('#results').append('<li>' + output + '</li');
+					}
+				}
 			}
 		}
 	</script>
