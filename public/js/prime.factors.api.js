@@ -38,11 +38,11 @@ var decomposition = function(number) {
 };
 
 var buildAnswer = function(input) {
-	if (input == undefined) return { code:400, body: numberNotProvided(input) };
+	if (input == undefined) return { code:200, body: numberNotProvided(input) };
 	var number = parseInt(input);
-	if (isNaN(input*2) || isNaN(number)) return { code: 400, body: notANumber(input) };
-	if (number > 1e6)  return { code: 400, body: tooBigNumber(number) };
-	if (number < 2)  return { code: 400, body: notDecomposable(number) };
+	if (isNaN(input*2) || isNaN(number)) return { code: 200, body: notANumber(input) };
+	if (number > 1e6)  return { code: 200, body: tooBigNumber(number) };
+	if (number < 2)  return { code: 200, body: notDecomposable(number) };
 	return { code: 200, body: decomposition(number) };
 }
 

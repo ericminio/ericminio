@@ -34,7 +34,7 @@ describe("Serving PrimeFactors", function() {
 	
 	it('resists string attacks', function(done) {
 		request("http://localhost:7000/yose/primeFactors?number=toto", function(error, response, body) {
-			expect(response.statusCode).toEqual(400);
+			expect(response.statusCode).toEqual(200);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 'toto',
 				error : 'not a number'
@@ -45,7 +45,7 @@ describe("Serving PrimeFactors", function() {
 		
 	it('resists big number attacks', function(done) {
 		request("http://localhost:7000/yose/primeFactors?number=1000001", function(error, response, body) {
-			expect(response.statusCode).toEqual(400);
+			expect(response.statusCode).toEqual(200);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 1000001,
 				error : 'too big number (>1e6)'
@@ -56,7 +56,7 @@ describe("Serving PrimeFactors", function() {
 
 	it('resists not decomposable number attacks', function(done) {
 		request("http://localhost:7000/yose/primeFactors?number=1", function(error, response, body) {
-			expect(response.statusCode).toEqual(400);
+			expect(response.statusCode).toEqual(200);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 1,
 				error : 'not an integer > 1'
@@ -67,7 +67,7 @@ describe("Serving PrimeFactors", function() {
 
 	it('resists mixed attacks', function(done) {
 		request("http://localhost:7000/yose/primeFactors?number=2zer", function(error, response, body) {
-			expect(response.statusCode).toEqual(400);
+			expect(response.statusCode).toEqual(200);
 			expect(body).toEqual(JSON.stringify( { 
 				number : '2zer',
 				error : 'not a number'
@@ -78,7 +78,7 @@ describe("Serving PrimeFactors", function() {
 		
 	it('resists not provided number attacks', function(done) {
 		request("http://localhost:7000/yose/primeFactors?", function(error, response, body) {
-			expect(response.statusCode).toEqual(400);
+			expect(response.statusCode).toEqual(200);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 'undefined',
 				error : 'number not provided'
@@ -89,7 +89,7 @@ describe("Serving PrimeFactors", function() {
 
 	it('resists not provided at all number attacks', function(done) {
 		request("http://localhost:7000/yose/primeFactors", function(error, response, body) {
-			expect(response.statusCode).toEqual(400);
+			expect(response.statusCode).toEqual(200);
 			expect(body).toEqual(JSON.stringify( { 
 				number : 'undefined',
 				error : 'number not provided'
