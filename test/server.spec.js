@@ -13,7 +13,7 @@ describe("Server", function() {
 	});
 	
 	it("ping", function(done) {
-		request("http://localhost:7000", function(error, response, body) {
+		request("http://localhost:7000/ping", function(error, response, body) {
 			expect(response.statusCode).toEqual(200);
 			done();
 		});

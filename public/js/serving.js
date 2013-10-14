@@ -13,7 +13,7 @@ serving = function(folder) {
 		var params = require('url').parse(request.url, true);
 		
 		var served = false;		
-		if (params.path == '/yose') {			
+		if (params.path == '/yose/ping') {			
 			pong(response);
 			served = true;
 		}

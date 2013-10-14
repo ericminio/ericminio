@@ -15,21 +15,21 @@ describe("Serving ping level", function() {
 	});
 
 	it("answers to a ping from yose", function(done) {
-		request("http://localhost:7000/yose", function(error, response, body) {
+		request("http://localhost:7000/yose/ping", function(error, response, body) {
 			expect(response.statusCode).toEqual(200);
 			done();
 		});
 	});
 	
 	it("answers with json to a ping from yose", function(done) {
-		request("http://localhost:7000/yose", function(error, response, body) {
+		request("http://localhost:7000/yose/ping", function(error, response, body) {
 			expect(response.headers['content-type']).toEqual('application/json');
 			done();
 		});
 	});
 	
 	it("answers the expected response to a ping from yose", function(done) {
-		request("http://localhost:7000/yose", function(error, response, body) {
+		request("http://localhost:7000/yose/ping", function(error, response, body) {
 			expect(body).toEqual(JSON.stringify( { alive: true } ));
 			done();
 		});
