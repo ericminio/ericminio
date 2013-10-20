@@ -14,12 +14,11 @@ describe("Prime factors UI", function() {
 		server.stop();
 	});
 
-	xit('has an appropriate title and invitation', function(done) {
+	it('has an appropriate title and invitation', function(done) {
 		var browser = new Browser();
 		browser.visit('http://localhost:7000/yose/primeFactors/ui').
 			then(function() {
 				expect(browser.query('#title')).toBeDefined();
-				done();
 			}).
 			then(function() {
 				expect(browser.query('#invitation')).toBeDefined();
@@ -31,12 +30,11 @@ describe("Prime factors UI", function() {
 			});
 	});
 	
-	xit('has the required form', function(done) {
+	it('has the required form', function(done) {
 		var browser = new Browser();
 		browser.visit('http://localhost:7000/yose/primeFactors/ui').
 			then(function() {
 				expect(browser.query('input#number')).toBeDefined();
-				done();
 			}).
 			then(function() {
 				expect(browser.query('button#go')).toBeDefined();
@@ -48,7 +46,7 @@ describe("Prime factors UI", function() {
 			});
 	});
 	
-	xit('offers a way to ask for a decomposition', function(done) {
+	it('offers a way to ask for a decomposition', function(done) {
 		var browser = new Browser();
 		browser.visit('http://localhost:7000/yose/primeFactors/ui').
 			then(function() {
@@ -64,7 +62,7 @@ describe("Prime factors UI", function() {
 			});
 	});
 	
-	xdescribe('Protection', function() {
+	describe('Protection', function() {
 		
 		var browser = new Browser();
 
@@ -122,19 +120,15 @@ describe("Prime factors UI", function() {
 			}).
 			then(function() {
 				expect(browser.text('#result')).toEqual('');
-				done();
 			}).
 			then(function() {
 				expect(browser.queryAll('ol#results li').length).toEqual(3);
-				done();
 			}).
 			then(function() {
 				expect(browser.text('ol#results li:nth-of-type(1)')).toEqual('42 = 2 x 3 x 7');
-				done();
 			}).
 			then(function() {
 				expect(browser.text('ol#results li:nth-of-type(2)')).toEqual('15 = 3 x 5');
-				done();
 			}).
 			then(function() {
 				expect(browser.text('ol#results li:nth-of-type(3)')).toEqual('21 = 3 x 7');
@@ -157,11 +151,9 @@ describe("Prime factors UI", function() {
 			}).
 			then(function() {
 				expect(browser.queryAll('ol#results li').length).toEqual(2);
-				done();
 			}).
 			then(function() {
 				expect(browser.text('ol#results li:nth-of-type(1)')).toEqual('42 = 2 x 3 x 7');
-				done();
 			}).
 			then(function() {
 				expect(browser.text('ol#results li:nth-of-type(2)')).toEqual('hello is not a number');
