@@ -13,6 +13,12 @@ serving = function(folder) {
 		var params = require('url').parse(request.url, true);
 		
 		var served = false;		
+		if (params.path == '/yose') {			
+			response.writeHead(200, { 'content-type': 'text/html' });
+			response.write(fs.readFileSync('./public/yose.html'));
+			response.end();
+			served = true;
+		}
 		if (params.path == '/yose/ping') {			
 			pong(response);
 			served = true;
