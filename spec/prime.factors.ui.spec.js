@@ -18,10 +18,10 @@ describe("Prime factors UI", function() {
 		var browser = new Browser();
 		browser.visit('http://localhost:7000/yose/primeFactors/ui').
 			then(function() {
-				expect(browser.query('#title')).toBeDefined();
+				expect(browser.query('#title')).not.toBeNull();
 			}).
 			then(function() {
-				expect(browser.query('#invitation')).toBeDefined();
+				expect(browser.query('#invitation')).not.toBeNull();
 				done();
 			}).
 			fail(function(error) {
@@ -34,10 +34,10 @@ describe("Prime factors UI", function() {
 		var browser = new Browser();
 		browser.visit('http://localhost:7000/yose/primeFactors/ui').
 			then(function() {
-				expect(browser.query('input#number')).toBeDefined();
+				expect(browser.query('input#number')).not.toBeNull();
 			}).
 			then(function() {
-				expect(browser.query('button#go')).toBeDefined();
+				expect(browser.query('button#go')).not.toBeNull();
 				done();
 			}).
 			fail(function(error) {
