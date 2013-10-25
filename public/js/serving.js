@@ -11,7 +11,7 @@ serving = function(folder) {
 	
 	return function (request, response) {
 		var params = require('url').parse(request.url, true);
-		
+
 		var served = false;		
 		if (params.path == '/yose') {			
 			response.writeHead(200, { 'content-type': 'text/html' });
@@ -32,6 +32,12 @@ serving = function(folder) {
 		if (params.path == '/yose/primeFactors/ui') {
 			response.writeHead(200, { 'content-type': 'text/html' });
 			response.write(fs.readFileSync('./public/prime.factors.html'));
+			response.end();
+			served = true;
+		}
+		if (params.path == '/yose/minesweeper') {
+			response.writeHead(200, { 'content-type': 'text/html' });
+			response.write(fs.readFileSync('./public/minesweeper/minesweeper.html'));
 			response.end();
 			served = true;
 		}

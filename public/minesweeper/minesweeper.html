@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Minesweeper</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap-responsive.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+
+	<script src="/lib/jquery/jquery-1.9.0.min.js"></script>	
+	<script src="/minesweeper/shuffle.js"></script>
+	<script src="/minesweeper/load.grid.js"></script>
+	<script src="/minesweeper/new.game.js"></script>
+	<script src="/minesweeper/play.js"></script>
+</head>
+<body class="container">
+	
+	<legend id="title">Minesweeper</legend>
+	
+	<div class="checkbox"><label><input type="checkbox" id="suspect-mode"> Suspect mode</label></div>
+	
+	<p>
+		<table id="grid">
+			<tr></tr>
+		</table>
+	</p>
+	
+	<p id="message" class="alert">Switch to 'Suspect mode' to mark cell where you suspect there is a bomb.</p>
+	
+	<script>
+		$(document).ready(function() {
+			newGame();
+		});
+	</script>
+</body>
+</html>
