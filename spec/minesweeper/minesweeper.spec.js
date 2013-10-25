@@ -18,7 +18,7 @@ describe("Minesweeper page", function() {
 	});
 	
 	var selector = function(line, column) {
-		return '#grid [id^=cell' + line + column + ']';
+		return '#grid [id^=cell-' + line + 'x' + column + ']';
 	};
 	var play = function(line, column, browser) {
 		var onclick = browser.query(selector(line, column)).onclick;
@@ -49,7 +49,7 @@ describe("Minesweeper page", function() {
 			browser.visit(minesweeperUrl).
 				then(function() {
 					for(var line=0; line<8; line ++) {
-						expect(browser.queryAll('#grid [id^=cell' + (line+1) + ']').length).toEqual(8);
+						expect(browser.queryAll('#grid [id^=cell-' + (line+1) + ']').length).toEqual(8);
 					}
 					done();
 				}).

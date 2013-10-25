@@ -8,7 +8,7 @@ var load = function() {
 		table.append('<tr></tr>');
 		var row = $('table#grid tr:nth-child(' + (line+1) + ')');
 		for(var column=0; column < data[line].length; column++) {
-			var content = '<td class="empty" id="cell' + (line+1) + (column+1) + '" onclick="play(' + (line+1) + ', ' + (column+1) + ')"></td>';
+			var content = '<td class="empty" id="cell-' + (line+1) + 'x' + (column+1) + '" onclick="play(' + (line+1) + ', ' + (column+1) + ')"></td>';
 			if (data[line][column] == 'bomb') {
 				content = content.replace('empty', 'bomb');
 			}

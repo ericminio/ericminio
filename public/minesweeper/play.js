@@ -11,7 +11,7 @@ var rowCount = function() {
 };
 
 var columnCount = function() {
-	return $('#grid [id^=cell1]').length;
+	return $('#grid [id^=cell-1x]').length;
 };
 
 var thereIsABombIn = function(cell) {
@@ -23,7 +23,7 @@ var isStillHidden = function(cell) {
 };
 
 var cellAt = function(line, column) {
-	var cell = $('#grid [id^=cell' + line + column + ']');
+	var cell = $('#grid [id=cell-' + line + 'x' + column + ']');
 	return cell.length == 0 ? undefined: cell;
 };
 

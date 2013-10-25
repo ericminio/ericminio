@@ -21,19 +21,19 @@ describe('Load grid', function() {
 	
 	it('creates the expected amount of columns for each line', function() {
 		for(var line=0; line<data.length; line ++) {
-			expect($('#grid [id^=cell' + (line+1) + ']').length).toEqual(data[line].length);
+			expect($('#grid [id^=cell-' + (line+1) + ']').length).toEqual(data[line].length);
 		}
 	});
 	
 	it('sets the class of bombs', function() {
-		expect($('#grid [id=cell11]').attr('class')).toEqual('bomb');
+		expect($('#grid [id=cell-1x1]').attr('class')).toEqual('bomb');
 	});
 	
 	it('sets the class of empty slots', function() {
-		expect($('#grid [id=cell21]').attr('class')).toEqual('empty');
+		expect($('#grid [id=cell-2x1]').attr('class')).toEqual('empty');
 	});
 	
 	it('makes each cell playable', function() {
-		expect($('#grid [id=cell23]').attr('onclick')).toEqual('play(2, 3)');
+		expect($('#grid [id=cell-2x3]').attr('onclick')).toEqual('play(2, 3)');
 	});
 });
