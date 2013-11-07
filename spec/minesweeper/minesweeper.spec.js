@@ -137,7 +137,37 @@ describe("Minesweeper page", function() {
 		});
 	});
 	
-	describe('Clues', function() {
+	describe('playing by clicking', function() {
+
+		var data = [
+			[ 'bomb',  'empty', 'empty'],
+			[ 'empty', 'bomb',  'empty'],
+			[ 'empty', 'empty', 'bomb' ],
+		];
+
+		it('might lead to loosing when clicking on a cell containing a bomb', function(done) {
+			browser.visit(minesweeperUrl).
+				then(function() {
+					browser.document.grid = data;
+					browser.evaluate("load()");
+				}).
+				then(function() {
+					browser.click('#cell-1x1');
+				}).
+				then(function() {
+					expect(cellClass(1, 1, browser)).toEqual('lost');
+					done();
+				}).
+				fail(function(error) {
+					expect(error.toString()).toBeNull();
+					done();
+				});
+		});
+		
+		
+	});
+	
+    describe('Clues', function() {
 		
 		var data = [
 			[ 'bomb',  'empty', 'empty'],
