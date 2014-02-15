@@ -2,6 +2,7 @@ var fs = require('fs');
 var pong = require('../../public/js/pong.js');
 var serve_static = require('../../public/js/serve-static.js');
 var api = require('../../public/js/prime.factors.api.js');
+var fire = require('../../public/fire/fire.geek.js');
 
 String.prototype.startsWith = function(prefix) {
 	return this.indexOf(prefix) != -1;
@@ -21,6 +22,10 @@ serving = function(folder) {
 		}
 		if (params.path == '/yose/ping') {			
 			pong(response);
+			served = true;
+		}
+		if (params.path.startsWith('/fire/geek?')) {
+			fire(request, response);
 			served = true;
 		}
 		if (params.path.startsWith('/yose/primeFactors?number=') 
