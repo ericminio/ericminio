@@ -21,5 +21,10 @@ var waterIn = function(map) {
     return objectIn(map, 'W');
 }
 
+var fireIn = function(map) {
+    return objectIn(map, 'F');
+}
+
 module.exports.planeIn = planeIn;
 module.exports.waterIn = waterIn;
+module.exports.fireIn  = fireIn;

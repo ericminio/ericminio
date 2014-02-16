@@ -1,5 +1,6 @@
 var url = require('url');
 var positionOf = require('./objects.position.in.map');
+var avoidFire = require('./avoid');
 var buildPathBetween = require('./path.builder');
 
 var sendAnswer = function(response, answer) {
@@ -21,10 +22,14 @@ geek = function(incoming, response) {
     var map = extractMap(incoming);    
     var plane = positionOf.planeIn(map);
     var water = positionOf.waterIn(map);
+    var fire = positionOf.fireIn(map);
+    
+    var movesToWater = avoidFire(map);
+    var movesFromWaterToFire = buildPathBetween(water, fire);
     
     var answer = {
         map: map,
-        moves: buildPathBetween(plane, water)
+        moves: movesToWater.concat(movesFromWaterToFire)
     };    
 	sendAnswer(response, answer);
 }
