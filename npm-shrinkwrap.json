@@ -130,6 +130,11 @@
         }
       }
     },
+    "deep-equal": {
+      "version": "0.2.1",
+      "from": "deep-equal@",
+      "resolved": "https://registry.npmjs.org/deep-equal/-/deep-equal-0.2.1.tgz"
+    },
     "jquery": {
       "version": "1.8.3",
       "from": "jquery@~1.8.3",

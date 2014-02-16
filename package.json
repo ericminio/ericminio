@@ -4,7 +4,7 @@
   "dependencies": {
     "url": "0.7.9",
     "request": "2.21.0",
-    "deep-equal": "~0.2.1"
+    "deep-equal": "0.2.1"
   },
   "devDependencies": {
     "zombie": "2.0.0-alpha19",
