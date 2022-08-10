@@ -1,4 +1,5 @@
-See it live: http://ericminio.herokuapp.com
+I look at software development as collective art, an adventure with technical and human challenges. 
 
-Serving YoseTheGame on http://ericminio.herokuapp.com/yose
+I specialize in incremental value delivery.
 
+My real strength is Test-Driven Development.
